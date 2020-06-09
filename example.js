@@ -1,10 +1,14 @@
 const puppeteer = require("puppeteer");
+const puppeteerFirefox = require('puppeteer-firefox');
+
 const devices = require("puppeteer/DeviceDescriptors");
 
 describe("Tips and Tricks Test Suite", () => {
 
     let browser;
     let page;
+    let browserFirefox;
+    let pageFirefox;
 
     before(async function() {
         browser = await puppeteer.launch({ headless: true });
@@ -69,6 +73,18 @@ describe("Tips and Tricks Test Suite", () => {
         //execute navigation api within the page context
         const metrics = await page.evaluate(() => JSON.stringify(window.performance));
         console.log(JSON.parse(metrics));
+    });
+
+    //Firefox test
+    it("Firefox test", async function() {
+        const browserFirefox = await puppeteerFirefox.launch({ headless: false });
+        const pageFirefox = await browserFirefox.newPage();
+        await pageFirefox.setDefaultTimeout(10000);
+
+        await pageFirefox.goto("http://zero.webappsecurity.com/index.html");
+        await pageFirefox.waitForSelector('#signin_button');
+        await pageFirefox.waitFor(5000);
+        await browserFirefox.close();
     });
 
 })
