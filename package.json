@@ -1,0 +1,14 @@
+{
+  "name": "pptr-tips",
+  "version": "1.0.0",
+  "description": "This is the repo for tips and tricks with puppeteer",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Rajiv Singh",
+  "license": "ISC",
+  "dependencies": {
+    "puppeteer": "^3.3.0"
+  }
+}
