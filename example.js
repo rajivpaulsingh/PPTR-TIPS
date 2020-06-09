@@ -34,4 +34,21 @@ describe("Tips and Tricks Test Suite", () => {
         await page.goto("https://pptr.dev");
         await page.waitFor(3000);
     });
+
+    //Fake geolocation
+    it('Geolocation test', async function() {
+        //grant permission for geolocation change
+        const context = browser.defaultBrowserContext();
+        await context.overridePermissions('https://www.where-am-i.net/', ['geolocation']);
+
+        await page.goto("https://www.where-am-i.net/");
+        await page.waitForSelector('title');
+
+        //change geolocation to the north pole
+        await page.setGeolocation({ latitude: 33.8, longitude: -118.3 });
+
+        //Extracting a text from an element
+        const text = await page.$eval('#location', element => element.innerHTML)
+        console.log('The current location is: ' + text)
+    })
 })
