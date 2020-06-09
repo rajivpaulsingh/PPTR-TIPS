@@ -51,4 +51,14 @@ describe("Tips and Tricks Test Suite", () => {
         const text = await page.$eval('#location', element => element.textContent)
         console.log('The faked location is: ' + text)
     })
+
+    //Accessibility test
+    it("Accessibility test", async function() {
+        await page.goto("http://pptr.dev"); 
+        await page.waitForSelector('title');
+
+        const snapshot = await page.accessibility.snapshot();
+        console.log(snapshot);
+    });
+
 })
