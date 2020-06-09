@@ -77,14 +77,25 @@ describe("Tips and Tricks Test Suite", () => {
 
     //Firefox test
     it("Firefox test", async function() {
-        const browserFirefox = await puppeteerFirefox.launch({ headless: false });
-        const pageFirefox = await browserFirefox.newPage();
+        browserFirefox = await puppeteerFirefox.launch({ headless: true });
+        pageFirefox = await browserFirefox.newPage();
         await pageFirefox.setDefaultTimeout(10000);
 
         await pageFirefox.goto("http://zero.webappsecurity.com/index.html");
         await pageFirefox.waitForSelector('#signin_button');
         await pageFirefox.waitFor(5000);
         await browserFirefox.close();
+    });
+
+    //Incognito browser test
+    it("Accessibility test", async function() {
+        const browser = await puppeteer.launch({ headless: false });
+        const context = await browser.createIncognitoBrowserContext();
+        const page = await context.newPage();
+        await page.goto("http://zero.webappsecurity.com/index.html");
+        await page.waitForSelector('#signin_button');
+        await page.waitFor(5000);
+        await browser.close();
     });
 
 })
