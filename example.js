@@ -19,4 +19,9 @@ describe("Tips and Tricks Test Suite", () => {
         await page.goto("http://www.example.com", { waitUntil: "networkidle0" });
         await page.screenshot({ path: "example.png", fullPage: true });
     });
+
+    it("PDF test", async function() {
+        await page.goto("http://www.example.com", { waitUntil: "networkidle0" });
+        await page.pdf({ path: "example.pdf", format: "A4"});
+    });
 })
