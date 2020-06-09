@@ -45,10 +45,10 @@ describe("Tips and Tricks Test Suite", () => {
         await page.waitForSelector('title');
 
         //change geolocation to the north pole
-        await page.setGeolocation({ latitude: 33.8, longitude: -118.3 });
+        await page.setGeolocation({ latitude: 88.8, longitude: -118.3 });
 
         //Extracting a text from an element
-        const text = await page.$eval('#location', element => element.innerHTML)
-        console.log('The current location is: ' + text)
+        const text = await page.$eval('#location', element => element.textContent)
+        console.log('The faked location is: ' + text)
     })
 })
