@@ -61,4 +61,14 @@ describe("Tips and Tricks Test Suite", () => {
         console.log(snapshot);
     });
 
+    //Measuring website performance data
+    it("Website performance data test", async function() {
+        await page.goto("http://pptr.dev"); 
+        await page.waitForSelector('title');
+
+        //execute navigation api within the page context
+        const metrics = await page.evaluate(() => JSON.stringify(window.performance));
+        console.log(JSON.parse(metrics));
+    });
+
 })
